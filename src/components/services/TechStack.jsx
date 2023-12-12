@@ -41,7 +41,7 @@ function Techstack() {
     slidesToShow: 5,
     slidesToScroll: 1,
     autoplay: true,
-    speed: 2000,
+    speed: 1000,
     autoplaySpeed: 2000,
     pauseOnHover: true,
     cssEase: "linear",
