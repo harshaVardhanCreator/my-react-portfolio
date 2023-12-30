@@ -6,6 +6,8 @@ import Services from "./components/services/Services";
 import Services1 from "./components/services/Services1";
 import Portfolio from "./components/portfolio/Portfolio";
 
+import { SpeedInsights } from "@vercel/speed-insights/react";
+
 const App = () => {
   return (
     <div>
@@ -27,6 +29,7 @@ const App = () => {
       </section>
       <Portfolio />
       <section id="Contact">Contact</section>
+      <SpeedInsights />
     </div>
   );
 };
