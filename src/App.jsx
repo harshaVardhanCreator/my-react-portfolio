@@ -5,6 +5,7 @@ import Parallax from "./components/parallax/Parallax";
 import Services from "./components/services/Services";
 import Services1 from "./components/services/Services1";
 import Portfolio from "./components/portfolio/Portfolio";
+import Contact from "./components/contact/Contact";
 
 import { SpeedInsights } from "@vercel/speed-insights/react";
 
@@ -28,7 +29,9 @@ const App = () => {
         <Parallax type="portfolio" />
       </section>
       <Portfolio />
-      <section id="Contact">Contact</section>
+      <section id="Contact">
+        <Contact />
+      </section>
       <SpeedInsights />
     </div>
   );
