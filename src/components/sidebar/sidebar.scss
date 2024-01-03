@@ -9,7 +9,7 @@
   color: black;
   
   .bg {
-    z-index: 999;
+    z-index: 1000;
     position: fixed;
     top: 0;
     left: 0;
@@ -42,7 +42,7 @@
   }
 
   button {
-    z-index: 999;
+    z-index: 1000;
     position: fixed;
     width: 40px;
     height: 40px;
