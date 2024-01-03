@@ -22,6 +22,11 @@ const variants = {
 };
 
 const Contact = () => {
+  let delay = 4;
+  if (window.innerWidth <= 738) {
+    delay = 1;
+  }
+
   const ref = useRef();
   const formRef = useRef();
   const [error, setError] = useState(false);
@@ -95,7 +100,7 @@ const Contact = () => {
           onSubmit={sendEmail}
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
-          transition={{ delay: 4, duration: 1 }}
+          transition={{ delay, duration: 1 }}
         >
           <input type="text" required placeholder="Name" name="name" />
           <input type="email" required placeholder="Email" name="email" />

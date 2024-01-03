@@ -26,7 +26,6 @@ import {
   SiJest,
   SiGraphql,
 } from "react-icons/si";
-import { TbBrandGolang } from "react-icons/tb";
 import "./services1.scss";
 
 function NoArrow() {
@@ -34,18 +33,27 @@ function NoArrow() {
 }
 
 function Techstack() {
+  const isSmallScreen = window.innerWidth <= 738;
+
   const settings = {
     infinite: true,
     nextArrow: <NoArrow />,
     prevArrow: <NoArrow />,
-    slidesToShow: 5,
     slidesToScroll: 1,
     autoplay: true,
-    speed: 1000,
     autoplaySpeed: 2000,
-    pauseOnHover: true,
     cssEase: "linear",
   };
+
+  if (window.innerWidth <= 738) {
+    settings.slidesToShow = 3;
+    settings.speed = 2000;
+    settings.pauseOnHover = false;
+  } else {
+    settings.slidesToShow = 5;
+    settings.speed = 1000;
+    settings.pauseOnHover = true;
+  }
 
   return (
     <div className="slider">
@@ -53,8 +61,9 @@ function Techstack() {
         <div className="slide">
           <div className="img">
             <Tooltip title="C++" placement="top" arrow>
-              <Button>
+              <Button className="techButton">
                 <CgCPlusPlus size={80} color="white" />
+                {isSmallScreen && <div className="techName">C++</div>}
               </Button>
             </Tooltip>
           </div>

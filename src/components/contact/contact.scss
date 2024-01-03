@@ -1,4 +1,4 @@
-// @import "../../app.scss";
+@import "../../app.scss";
 
 .contact {
   height: 100%;
@@ -9,11 +9,12 @@
   gap: 50px;
   
 
-//   @include mobile {
-//     width: 100%;
-//     padding: 10px;
-//     flex-direction: column;
-//   }
+  @include mobile {
+    width: 100%;
+    padding: 10px;
+    flex-direction: column;
+    overflow: hidden;
+  }
 
   .textContainer {
     flex: 1;
@@ -21,20 +22,21 @@
     flex-direction: column;
     gap: 40px;
 
-    // @include mobile {
-    //   gap: 20px;
-    //   text-align: center;
-    //   align-items: center;
-    //   margin-top: 70px;
-    // }
+    @include mobile {
+      gap: 20px;
+      text-align: center;
+      align-items: center;
+      margin-top: 70px;
+    }
 
     h1 {
       font-size: 100px;
       line-height: 88px;
 
-    //   @include mobile {
-    //     font-size: 36px;
-    //   }
+      @include mobile {
+        font-size: 36px;
+        line-height: 40px;
+      }
     }
 
     span {
@@ -46,10 +48,10 @@
     flex: 1;
     position: relative;
     
-    // @include mobile {
-    //   padding: 50px;
-    //   width: 100%;
-    // }
+    @include mobile {
+      padding: 50px;
+      width: 100%;
+    }
 
 
     .phoneSvg {
@@ -57,6 +59,10 @@
       position: absolute;
       margin: auto;
       z-index: -1;
+
+      @include mobile{
+        display: none;
+      }
     }
 
     form {
@@ -72,9 +78,9 @@
         color: white;
         border-radius: 5px;
 
-        // @include mobile {
-        //   padding: 10px;
-        // }
+        @include mobile {
+          padding: 10px;
+        }
       }
 
       .submitButton {
@@ -83,9 +89,14 @@
         background-color: orange;
         cursor: pointer;
         font-weight: 500;
-        // @include mobile {
-        //   padding: 10px;
-        // }
+
+        @include mobile {
+          padding: 10px;
+        }
+      }
+
+      @include mobile{
+
       }
     }
   }

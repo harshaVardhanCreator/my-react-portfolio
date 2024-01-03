@@ -11,18 +11,27 @@ function NoArrow() {
 }
 
 function ToolStack() {
+  const isSmallScreen = window.innerWidth <= 738;
+
   const settings = {
     infinite: true,
     nextArrow: <NoArrow />,
     prevArrow: <NoArrow />,
-    slidesToShow: 5,
     slidesToScroll: 1,
     autoplay: true,
-    speed: 1000,
     autoplaySpeed: 2000,
-    pauseOnHover: true,
     cssEase: "linear",
   };
+
+  if (window.innerWidth <= 738) {
+    settings.slidesToShow = 3;
+    settings.speed = 2000;
+    settings.pauseOnHover = false;
+  } else {
+    settings.slidesToShow = 5;
+    settings.speed = 1000;
+    settings.pauseOnHover = true;
+  }
 
   return (
     <div className="slider">
@@ -30,8 +39,9 @@ function ToolStack() {
         <div className="slide">
           <div className="img">
             <Tooltip title="Visual Studio Code" placement="top" arrow>
-              <Button>
+              <Button className="techButton">
                 <DiVisualstudio size={80} color="white" />
+                {isSmallScreen && <div className="techName">Visual Studio</div>}
               </Button>
             </Tooltip>
           </div>
