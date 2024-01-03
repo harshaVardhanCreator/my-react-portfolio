@@ -46,6 +46,7 @@
   
         @include mobile {
           flex-direction: column;
+          gap: 20px;
         }
   
         .imageContainer {
@@ -78,6 +79,7 @@
           @include mobile {
             transform: none !important;
             padding: 10px;
+            gap: 20px;
             align-items: center;
             text-align: center;
           }
