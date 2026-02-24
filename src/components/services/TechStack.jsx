@@ -1,6 +1,6 @@
 import React from "react";
 import Slider from "react-slick";
-import Tooltip, { tooltipClasses } from "@mui/material/Tooltip";
+import Tooltip from "@mui/material/Tooltip";
 import Button from "@mui/material/Button";
 
 import "@fontsource/roboto/300.css";
