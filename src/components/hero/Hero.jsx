@@ -38,6 +38,34 @@ const sliderVariants ={
     },
 }
 
+const imageVariants = {
+    initial: {
+        opacity: 0,
+        scale: 0.85,
+        x: 80,
+    },
+    animate: {
+        opacity: 1,
+        scale: 1,
+        x: 0,
+        transition: {
+            duration: 1.2,
+            ease: [0.25, 0.46, 0.45, 0.94],
+        },
+    },
+}
+
+const floatingVariants = {
+    animate: {
+        y: [0, -15, 0],
+        transition: {
+            duration: 4,
+            repeat: Infinity,
+            ease: "easeInOut",
+        },
+    },
+}
+
 const Hero = () => {
   return (
     <div className="hero">
@@ -55,9 +83,14 @@ const Hero = () => {
         <motion.div className="slidingTextContainer" variants={sliderVariants} initial="initial" animate="animate">
             Frontend Developer
         </motion.div>
-        <div className="imageContainer">
-            <img src="/hero.png" alt="" />
-        </div>
+        <motion.div className="imageContainer" variants={imageVariants} initial="initial" animate="animate">
+            <motion.img 
+                src="/hero.png" 
+                alt="Harsha Vardhan portrait" 
+                variants={floatingVariants}
+                animate="animate"
+            />
+        </motion.div>
     </div>
   )
 }
