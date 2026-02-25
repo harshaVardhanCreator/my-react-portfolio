@@ -1,5 +1,6 @@
 import "./hero.scss"
-import {motion} from 'framer-motion'
+import {motion, useScroll, useTransform} from 'framer-motion'
+import { useRef } from 'react'
 
 const textVariants ={
     initial: {
@@ -67,8 +68,22 @@ const floatingVariants = {
 }
 
 const Hero = () => {
+  const heroRef = useRef(null)
+
+  const { scrollYProgress } = useScroll({
+    target: heroRef,
+    offset: ["start start", "end start"],
+  })
+
+  // Scroll-driven transforms for the hero image
+  const imageY = useTransform(scrollYProgress, [0, 1], [0, -120])
+  const imageScale = useTransform(scrollYProgress, [0, 0.5, 1], [1, 1.08, 1.15])
+  const imageRotate = useTransform(scrollYProgress, [0, 1], [0, -6])
+  const imageOpacity = useTransform(scrollYProgress, [0, 0.7, 1], [1, 0.8, 0])
+  const imageBlur = useTransform(scrollYProgress, [0, 0.8, 1], [0, 0, 4])
+
   return (
-    <div className="hero">
+    <div className="hero" ref={heroRef}>
         <div className="wrapper">
             <motion.div className="textContainer" variants={textVariants} initial="initial" animate="animate">
                 <motion.h2 variants={textVariants}>HARSHA VARDHAN</motion.h2>
@@ -83,7 +98,19 @@ const Hero = () => {
         <motion.div className="slidingTextContainer" variants={sliderVariants} initial="initial" animate="animate">
             Frontend Developer
         </motion.div>
-        <motion.div className="imageContainer" variants={imageVariants} initial="initial" animate="animate">
+        <motion.div 
+            className="imageContainer" 
+            variants={imageVariants} 
+            initial="initial" 
+            animate="animate"
+            style={{
+                y: imageY,
+                scale: imageScale,
+                rotate: imageRotate,
+                opacity: imageOpacity,
+                filter: useTransform(imageBlur, (v) => `blur(${v}px)`),
+            }}
+        >
             <motion.img 
                 src="/hero.png" 
                 alt="Harsha Vardhan portrait" 
