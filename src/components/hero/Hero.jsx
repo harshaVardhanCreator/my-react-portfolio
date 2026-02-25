@@ -68,36 +68,38 @@ const floatingVariants = {
 }
 
 const Hero = () => {
-  const heroRef = useRef(null)
+  const stickyRef = useRef(null)
 
   const { scrollYProgress } = useScroll({
-    target: heroRef,
-    offset: ["start start", "end start"],
+    target: stickyRef,
+    offset: ["start start", "end end"],
   })
 
-  // Scroll-driven transforms for the hero image
-  const imageY = useTransform(scrollYProgress, [0, 1], [0, -120])
-  const imageScale = useTransform(scrollYProgress, [0, 0.5, 1], [1, 1.08, 1.15])
-  const imageRotate = useTransform(scrollYProgress, [0, 1], [0, -6])
-  const imageOpacity = useTransform(scrollYProgress, [0, 0.7, 1], [1, 0.8, 0])
-  const imageBlur = useTransform(scrollYProgress, [0, 0.8, 1], [0, 0, 4])
+  // Image stays fully visible through the hero, then animates out in the extra scroll space
+  const imageOpacity = useTransform(scrollYProgress, [0, 0.45, 0.75, 1], [1, 1, 0.4, 0])
+  const imageY = useTransform(scrollYProgress, [0, 0.45, 1], [0, 0, -200])
+  const imageScale = useTransform(scrollYProgress, [0, 0.45, 0.7, 1], [1, 1, 0.85, 0.6])
+  const imageRotate = useTransform(scrollYProgress, [0, 0.45, 1], [0, 0, -8])
 
   return (
-    <div className="hero" ref={heroRef}>
-        <div className="wrapper">
-            <motion.div className="textContainer" variants={textVariants} initial="initial" animate="animate">
-                <motion.h2 variants={textVariants}>HARSHA VARDHAN</motion.h2>
-                <motion.h1 variants={textVariants}>Web developer and UI designer</motion.h1>
-                <motion.div className="buttons" variants={textVariants}>
-                    <motion.button variants={textVariants}>See the latest Works</motion.button>
-                    <motion.button variants={textVariants}>Contact Me</motion.button>
+    <div className="heroStickyWrapper" ref={stickyRef}>
+      <div className="heroSticky">
+        <div className="hero">
+            <div className="wrapper">
+                <motion.div className="textContainer" variants={textVariants} initial="initial" animate="animate">
+                    <motion.h2 variants={textVariants}>HARSHA VARDHAN</motion.h2>
+                    <motion.h1 variants={textVariants}>Web developer and UI designer</motion.h1>
+                    <motion.div className="buttons" variants={textVariants}>
+                        <motion.button variants={textVariants}>See the latest Works</motion.button>
+                        <motion.button variants={textVariants}>Contact Me</motion.button>
+                    </motion.div>
+                    <motion.img variants={textVariants} animate="scrollButton" src="/scroll.png" alt="" />
                 </motion.div>
-                <motion.img variants={textVariants} animate="scrollButton" src="/scroll.png" alt="" />
+            </div>
+            <motion.div className="slidingTextContainer" variants={sliderVariants} initial="initial" animate="animate">
+                Frontend Developer
             </motion.div>
         </div>
-        <motion.div className="slidingTextContainer" variants={sliderVariants} initial="initial" animate="animate">
-            Frontend Developer
-        </motion.div>
         <motion.div 
             className="imageContainer" 
             variants={imageVariants} 
@@ -108,7 +110,6 @@ const Hero = () => {
                 scale: imageScale,
                 rotate: imageRotate,
                 opacity: imageOpacity,
-                filter: useTransform(imageBlur, (v) => `blur(${v}px)`),
             }}
         >
             <motion.img 
@@ -118,6 +119,7 @@ const Hero = () => {
                 animate="animate"
             />
         </motion.div>
+      </div>
     </div>
   )
 }
