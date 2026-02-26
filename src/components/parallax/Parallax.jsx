@@ -4,7 +4,7 @@ import { motion, useScroll, useTransform } from "framer-motion";
 
 const Parallax = ({ type }) => {
   const ref = useRef();
- 
+
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start start", "end start"],
@@ -25,16 +25,15 @@ const Parallax = ({ type }) => {
       }}
     >
       <motion.h1 style={{ y: yText }}>
-        {type === "services" ? "What I Know?" : "What We Did?"}
+        {type === "services" ? "What I Know?" : "What I Did?"}
       </motion.h1>
       <motion.div className="mountains"></motion.div>
       <motion.div
         className="planets"
         style={{
           y: yBg,
-          backgroundImage: `url(${
-            type === "services" ? "/planets.png" : "/sun.png"
-          })`,
+          backgroundImage: `url(${type === "services" ? "/planets.png" : "/sun.png"
+            })`,
         }}
       ></motion.div>
       <motion.div style={{ x: yBg }} className="stars"></motion.div>
